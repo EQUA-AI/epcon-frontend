@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epcon-frontend"
+version = "0.1.0"
+description = "EPCON Frontend Tweaks plugin for InvenTree - hides selected navigation links and allows future UI customizations."
+readme = "README.md"
+authors = [ { name = "EPCON", email = "dev@epcon.ai" } ]
+license = { text = "MIT" }
+keywords = ["inventree", "plugin", "frontend", "css", "ui"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Framework :: InvenTree",
+  "Topic :: Software Development :: User Interfaces"
+]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.entry-points."inventree_plugins"]
+epcon-frontend = "hide_links_plugin.core:EpconFrontend"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["hide_links_plugin"]
+
+[tool.setuptools.package-data]
+hide_links_plugin = ["static/css/*.css"]
+
+[tool.epcon_frontend]
+# Room for future configurable options like additional link selectors, dark mode tweaks, etc.

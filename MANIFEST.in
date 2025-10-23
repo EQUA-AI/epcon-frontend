@@ -1,0 +1,2 @@
+recursive-include hide_links_plugin/static/css *.css
+include README.md
