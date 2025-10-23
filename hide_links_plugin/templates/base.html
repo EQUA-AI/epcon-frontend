@@ -1,0 +1,35 @@
+{% load static i18n inventree_extras %}
+{% settings_value "SERVER_RESTART_REQUIRED" as server_restart_required %}
+{% settings_value "_PENDING_MIGRATIONS" as pending_migrations %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include "favicon.html" %}
+    <link rel="stylesheet" href="{% static 'css/inventree.css' %}">
+    <!-- Epcon Frontend Tweaks override assets -->
+    <link rel="stylesheet" href="/static/plugins/epcon-frontend/css/hide-links.css?v=0.1.2">
+    <script defer src="/static/plugins/epcon-frontend/js/hide-links.js?v=0.1.2"></script>
+    <title>{% block page_title %}{% inventree_title %}{% endblock page_title %}</title>
+    {% block head %}{% endblock head %}
+</head>
+<body>
+<div class='main body wrapper container-fluid inventree-body'>
+    <div class='row flex-nowrap inventree-body'>
+        <div class='col-auto px-1 sidebar-wrapper'>
+            <div id='sidebar' class='collapse collapse-horizontal show' style='display: none;'>
+                <div id='sidebar-nav' class='list-group text-sm-start'>
+                    {% block sidebar %}{% endblock sidebar %}
+                </div>
+            </div>
+        </div>
+        <div class='col content-wrapper'>
+            {% block messages %}{% include 'messages.html' %}{% endblock messages %}
+            {% block body %}{% endblock body %}
+        </div>
+    </div>
+</div>
+{% block scripts %}{% endblock scripts %}
+</body>
+</html>

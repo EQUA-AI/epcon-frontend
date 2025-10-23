@@ -19,7 +19,7 @@ class EpconFrontend(SettingsMixin, InvenTreePlugin):
     SLUG = "epcon-frontend"
     TITLE = "EPCON Frontend Tweaks"
     DESCRIPTION = "Enterprise UI tweaks: hide Documentation / About / Getting Started links (extensible)." 
-    VERSION = "0.1.1"
+    VERSION = "0.1.2"
     AUTHOR = "EPCON"
     WEBSITE = ""
     LICENSE = "MIT"

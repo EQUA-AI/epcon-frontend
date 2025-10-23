@@ -9,7 +9,7 @@ long_description = README.read_text(encoding="utf-8") if README.exists() else "E
 
 setup(
     name="epcon-frontend",
-    version="0.1.1",
+    version="0.1.2",
     packages=find_packages(include=["hide_links_plugin*"]),
     include_package_data=True,
     entry_points={
