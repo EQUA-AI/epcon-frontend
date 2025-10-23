@@ -1,3 +1,3 @@
-from .core import HideLinksPlugin
+from .core import EpconFrontend
 
-__all__ = ["HideLinksPlugin"]
+__all__ = ["EpconFrontend"]

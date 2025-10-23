@@ -1,7 +1,14 @@
-from plugin import InvenTreePlugin
-from plugin.mixins import SettingsMixin
+try:
+    from plugin import InvenTreePlugin
+    from plugin.mixins import SettingsMixin
+except ModuleNotFoundError:
+    # Fallback stubs for environments where InvenTree isn't installed (e.g., packaging introspection)
+    class SettingsMixin:  # type: ignore
+        pass
+    class InvenTreePlugin:  # type: ignore
+        pass
 
-class HideLinksPlugin(SettingsMixin, InvenTreePlugin):
+class EpconFrontend(SettingsMixin, InvenTreePlugin):
     """EPCON Frontend tweaks plugin.
 
     Provides UI cosmetic adjustments, currently hiding Documentation / About / Getting Started links

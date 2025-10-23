@@ -14,8 +14,8 @@ setup(
     include_package_data=True,
     entry_points={
         'inventree_plugins': [
-            # Use slug name for clarity; points to class HideLinksPlugin
-            'epcon-frontend = hide_links_plugin.core:HideLinksPlugin',
+            # Use slug name for clarity; now points to class EpconFrontend
+            'epcon-frontend = hide_links_plugin.core:EpconFrontend',
         ],
     },
     install_requires=[],
