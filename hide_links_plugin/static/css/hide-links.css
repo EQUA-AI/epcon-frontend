@@ -1,36 +1,44 @@
-/* Hide Documentation / Getting Started / About links in various menu contexts */
+/* EPCON Frontend Tweaks: Hide Documentation / Getting Started / About links.
+   Strategy:
+   1. Attribute-based selectors for common link patterns.
+   2. Text-based fallback using data attributes (applied by JS).
+   3. Broad selectors for sidebar / nav contexts.
+*/
 
-/* Anchor tags that link to external docs */
+/* Direct anchors by known href fragments */
 a[href*="docs.inventree.org"],
-/* Common internal routes (adjust as needed) */
-a[href="/about"],
-a[href="/getting-started"],
-a[href="/docs"],
-/* Title or aria-label based selectors */
+a[href*="/docs"],
+a[href*="/documentation"],
+a[href*="/getting-started"],
+a[href*="/about"],
+
+/* Title or aria labels */
 a[title="Documentation"],
 a[title="Getting Started"],
 a[title="About"],
 button[aria-label="About"],
+button[aria-label*="Documentation"],
 button[title="About"],
-/* Potential data-test attributes */
+button[title*="Documentation"],
+
+/* data-test attributes */
 *[data-test="documentation-link"],
 *[data-test="getting-started-link"],
-*[data-test="about-link"] {
+*[data-test="about-link"],
+
+/* Sidebar or nav items with anticipated classes */
+nav a[href*="getting-started"],
+nav a[href*="/about"],
+#sidebar a[href*="docs"],
+.sidebar a[href*="getting-started"],
+.menu a[href*="/about"],
+
+/* Elements tagged by JS fallback */
+*[data-epcon-hidden="true"] {
   display: none !important;
 }
 
-/* Fallback: remove list items containing those link texts (JS-inserted) */
-li:has(a[href*="docs.inventree.org"]),
-li:has(a[title="Documentation"]),
-li:has(a[href="/getting-started"]),
-li:has(a[href="/about"]) {
-  display: none !important;
-}
+/* Provide minimal fade if needed (commented out) */
+/* *[data-epcon-hidden="true"] { opacity: 0; transition: opacity .2s; } */
 
-/* Dashboard tiles with those headings */
-div:has(h2:contains("Getting Started")),
-div:has(h3:contains("Getting Started")) {
-  display: none !important;
-}
-
-/* Note: :has() and :contains() have limited support; primary selectors above should suffice. */
+/* Avoid unsupported :has()/ :contains() in production CSS; handled by JS instead. */

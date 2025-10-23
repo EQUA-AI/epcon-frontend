@@ -1,2 +1,3 @@
 recursive-include hide_links_plugin/static/css *.css
+recursive-include hide_links_plugin/static/js *.js
 include README.md

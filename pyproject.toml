@@ -30,7 +30,7 @@ include-package-data = true
 include = ["hide_links_plugin"]
 
 [tool.setuptools.package-data]
-hide_links_plugin = ["static/css/*.css"]
+hide_links_plugin = ["static/css/*.css", "static/js/*.js"]
 
 [tool.epcon_frontend]
 # Room for future configurable options like additional link selectors, dark mode tweaks, etc.

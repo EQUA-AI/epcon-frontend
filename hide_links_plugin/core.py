@@ -52,6 +52,17 @@ class EpconFrontend(SettingsMixin, InvenTreePlugin):
             return ['css/hide-links.css']
         return []
 
+    def load_js(self):  # Optional refine: InvenTree will include if plugin framework supports load_js
+        active = self.SETTINGS.get('ACTIVE', {}).get('default', True)
+        if hasattr(self, 'get_setting') and callable(getattr(self, 'get_setting')):
+            try:
+                active = self.get_setting('ACTIVE')
+            except Exception:
+                pass
+        if active:
+            return ['js/hide-links.js']
+        return []
+
     # Fallback get_setting only if missing from mixin (do not override real one)
     if not hasattr(SettingsMixin, 'get_setting'):
         def get_setting(self, key, default=None):  # type: ignore
