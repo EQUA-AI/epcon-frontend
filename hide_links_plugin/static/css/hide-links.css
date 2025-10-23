@@ -1,0 +1,36 @@
+/* Hide Documentation / Getting Started / About links in various menu contexts */
+
+/* Anchor tags that link to external docs */
+a[href*="docs.inventree.org"],
+/* Common internal routes (adjust as needed) */
+a[href="/about"],
+a[href="/getting-started"],
+a[href="/docs"],
+/* Title or aria-label based selectors */
+a[title="Documentation"],
+a[title="Getting Started"],
+a[title="About"],
+button[aria-label="About"],
+button[title="About"],
+/* Potential data-test attributes */
+*[data-test="documentation-link"],
+*[data-test="getting-started-link"],
+*[data-test="about-link"] {
+  display: none !important;
+}
+
+/* Fallback: remove list items containing those link texts (JS-inserted) */
+li:has(a[href*="docs.inventree.org"]),
+li:has(a[title="Documentation"]),
+li:has(a[href="/getting-started"]),
+li:has(a[href="/about"]) {
+  display: none !important;
+}
+
+/* Dashboard tiles with those headings */
+div:has(h2:contains("Getting Started")),
+div:has(h3:contains("Getting Started")) {
+  display: none !important;
+}
+
+/* Note: :has() and :contains() have limited support; primary selectors above should suffice. */
