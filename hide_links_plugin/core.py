@@ -19,7 +19,7 @@ class EpconFrontend(SettingsMixin, InvenTreePlugin):
     SLUG = "epcon-frontend"
     TITLE = "EPCON Frontend Tweaks"
     DESCRIPTION = "Enterprise UI tweaks: hide Documentation / About / Getting Started links (extensible)." 
-    VERSION = "0.1.0"
+    VERSION = "0.1.1"
     AUTHOR = "EPCON"
     WEBSITE = ""
     LICENSE = "MIT"
@@ -34,7 +34,25 @@ class EpconFrontend(SettingsMixin, InvenTreePlugin):
     }
 
     def load_css(self):
-        """Return CSS assets to load when plugin is active."""
-        if self.get_setting('ACTIVE'):
+        """Return CSS assets to load when plugin is active.
+
+        Avoid calling get_setting() if it is not available yet (e.g. raw import
+        outside full InvenTree plugin initialization) to prevent AttributeError.
+        """
+        # Prefer real get_setting if present, otherwise use SETTINGS defaults.
+        active = None
+        if hasattr(self, 'get_setting') and callable(getattr(self, 'get_setting')):
+            try:
+                active = self.get_setting('ACTIVE')
+            except Exception:
+                active = None
+        if active is None:
+            active = self.SETTINGS.get('ACTIVE', {}).get('default', True)
+        if active:
             return ['css/hide-links.css']
         return []
+
+    # Fallback get_setting only if missing from mixin (do not override real one)
+    if not hasattr(SettingsMixin, 'get_setting'):
+        def get_setting(self, key, default=None):  # type: ignore
+            return self.SETTINGS.get(key, {}).get('default', default)
