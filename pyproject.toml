@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "epcon-frontend"
-version = "0.1.3"
+version = "0.1.4"
 description = "EPCON Frontend Tweaks plugin for InvenTree - hides selected navigation links and allows future UI customizations."
 readme = "README.md"
 authors = [ { name = "EPCON", email = "dev@epcon.ai" } ]
